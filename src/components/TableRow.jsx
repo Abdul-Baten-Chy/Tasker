@@ -1,4 +1,4 @@
-function TableRow({ task, onEdit }) {
+function TableRow({ task, onEdit, onDelete }) {
   return (
     <tr class="border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2">
       <td>
@@ -34,7 +34,9 @@ function TableRow({ task, onEdit }) {
       <td class="text-center">{task.priority}</td>
       <td>
         <div class="flex items-center justify-center space-x-3">
-          <button class="text-red-500">Delete</button>
+          <button class="text-red-500" onClick={() => onDelete(task.id)}>
+            Delete
+          </button>
           <button class="text-blue-500" onClick={() => onEdit(task)}>
             Edit
           </button>

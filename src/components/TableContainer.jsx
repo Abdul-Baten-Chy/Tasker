@@ -1,6 +1,6 @@
 import TableRow from "./TableRow";
 
-function TableContainer({ tasks, onEdit }) {
+function TableContainer({ tasks, onEdit, onDelete }) {
   return (
     <table class="table-fixed overflow-auto xl:w-full">
       <thead>
@@ -30,7 +30,12 @@ function TableContainer({ tasks, onEdit }) {
       </thead>
       <tbody>
         {tasks.map((task) => (
-          <TableRow key={task.id} task={task} onEdit={onEdit} />
+          <TableRow
+            key={task.id}
+            task={task}
+            onEdit={onEdit}
+            onDelete={onDelete}
+          />
         ))}
       </tbody>
     </table>

@@ -33,14 +33,24 @@ function App() {
     setSelectedTask(task);
     setIsOpen(true);
   };
-
+  const onDelete = (id) => {
+    const taskAfterDelete = tasks.filter((task) => {
+      return task.id !== id;
+    });
+    setTasks(taskAfterDelete);
+  };
   return (
     <div class="bg-[#191D26] font-[Inter] text-white mx-auto max-width-[1400px] relative">
       {isOpen && <AddTask onSave={handleAddTask} selectedTask={selectedTask} />}
       <Nav />
       <div className="flex flex-col justify-center items-center">
         <Hero />
-        <Board toggleModal={setIsOpen} tasks={tasks} onEdit={handleEdite} />
+        <Board
+          toggleModal={setIsOpen}
+          tasks={tasks}
+          onEdit={handleEdite}
+          onDelete={onDelete}
+        />
       </div>
       <Footer />
     </div>
