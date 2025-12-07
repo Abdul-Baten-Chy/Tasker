@@ -1,4 +1,4 @@
-function Actions({ toggleModal }) {
+function Actions({ toggleModal, handleDeleteAll }) {
   return (
     <div class="mb-14 items-center justify-between sm:flex">
       <h2 class="text-2xl font-semibold max-sm:mb-4">Your Tasks</h2>
@@ -9,7 +9,10 @@ function Actions({ toggleModal }) {
         >
           Add Task
         </button>
-        <button class="rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold">
+        <button
+          class="rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold"
+          onClick={handleDeleteAll}
+        >
           Delete All
         </button>
       </div>

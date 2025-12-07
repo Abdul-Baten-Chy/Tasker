@@ -1,11 +1,11 @@
 import TableRow from "./TableRow";
 
-function TableContainer({ tasks, onEdit, onDelete }) {
+function TableContainer({ tasks, onEdit, onDelete, onFav }) {
   return (
     <table class="table-fixed overflow-auto xl:w-full">
       <thead>
         <tr>
-          <th class="p-4 pb-8 text-sm font-semibold capitalize w-[48px]"></th>
+          <th class="p-4 pb-8 text-sm font-semibold capitalize w-12"></th>
           <th class="p-4 pb-8 text-sm font-semibold capitalize w-[300px]">
             {" "}
             Title{" "}
@@ -35,6 +35,7 @@ function TableContainer({ tasks, onEdit, onDelete }) {
             task={task}
             onEdit={onEdit}
             onDelete={onDelete}
+            onFav={onFav}
           />
         ))}
       </tbody>

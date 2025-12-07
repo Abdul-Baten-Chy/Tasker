@@ -1,7 +1,14 @@
-function SearchForm() {
+import { useState } from "react";
+
+function SearchForm({ onSearch }) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const handlechange = (e) => {
+    e.preventDefault();
+    onSearch(searchTerm);
+  };
   return (
     <div class="p-2 flex justify-end">
-      <form>
+      <form onSubmit={handlechange}>
         <div class="flex">
           <div class="relative overflow-hidden rounded-lg text-gray-50 md:min-w-[380px] lg:min-w-[440px]">
             <input
@@ -10,6 +17,7 @@ function SearchForm() {
               class="z-20 block w-full bg-gray-800 px-4 py-2 pr-10 focus:outline-none"
               placeholder="Search Task"
               required
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
             <button
               type="submit"

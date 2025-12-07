@@ -22,7 +22,6 @@ function App() {
         })
       );
       setSelectedTask(null);
-      console.log(selectedTask, "hellow");
     } else {
       setTasks([...tasks, newTask]);
     }
@@ -39,9 +38,38 @@ function App() {
     });
     setTasks(taskAfterDelete);
   };
+
+  const handleDeleteAll = () => {
+    setTasks([]);
+  };
+  const handleSearch = (searchTerm) => {
+    const filteredTasks = tasks.filter((task) => {
+      return task.title.includes(searchTerm);
+    });
+    setTasks(filteredTasks);
+  };
+  const onFav = (id) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        return { ...task, isFavorite: !task.isFavorite };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  };
+  const handleClose = () => {
+    setIsOpen(false);
+    setSelectedTask(null);
+  };
   return (
     <div class="bg-[#191D26] font-[Inter] text-white mx-auto max-width-[1400px] relative">
-      {isOpen && <AddTask onSave={handleAddTask} selectedTask={selectedTask} />}
+      {isOpen && (
+        <AddTask
+          onSave={handleAddTask}
+          selectedTask={selectedTask}
+          handleClose={handleClose}
+        />
+      )}
       <Nav />
       <div className="flex flex-col justify-center items-center">
         <Hero />
@@ -50,6 +78,9 @@ function App() {
           tasks={tasks}
           onEdit={handleEdite}
           onDelete={onDelete}
+          handleDeleteAll={handleDeleteAll}
+          onSearch={handleSearch}
+          onFav={onFav}
         />
       </div>
       <Footer />
